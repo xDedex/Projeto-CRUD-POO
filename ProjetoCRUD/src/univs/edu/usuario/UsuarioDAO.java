@@ -5,6 +5,7 @@
  */
 package univs.edu.usuario;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -50,4 +51,13 @@ public class UsuarioDAO {
       sessao.close();
       return usuario;
   }
+  
+  public List<Usuario> listarUsuarios(){
+      sessao = HibernateUtil.getSessionFactory().openSession();
+      transacao = sessao.beginTransaction();
+      List<Usuario> usuario = sessao.createCriteria(Usuario.class).list();
+      sessao.close();
+      return usuario;
+  }
+
 }

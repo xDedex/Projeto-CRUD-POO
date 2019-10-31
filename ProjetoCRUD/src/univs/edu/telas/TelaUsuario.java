@@ -5,7 +5,6 @@
  */
 package univs.edu.telas;
 
-import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
 
@@ -118,18 +117,13 @@ public class TelaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!tfLogin.getText().isEmpty() && !tfSenha.getText().isEmpty()){
-        usuario.setLogin(tfLogin.getText());
-        usuario.setSenha(tfSenha.getText());
-        dao.salvar(usuario);
-        JOptionPane.showMessageDialog(null, "Usuário Cadastrado :D");
-        limparCampos();
-        }else{
-             JOptionPane.showMessageDialog(null, "Você é muito burro, esqueceu algum campo! :(");
+      TelaPesquisaUsuario tela = new TelaPesquisaUsuario();
+      tela.setVisible(true);
+      dispose();
         }
      
           
-      }
+      
     public void limparCampos(){
         usuario = new Usuario();
         tfLogin.setText("");
@@ -181,3 +175,4 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
 }
+

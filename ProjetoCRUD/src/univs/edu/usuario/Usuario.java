@@ -67,5 +67,9 @@ public class Usuario {
     public void setSenha(String Senha) {
         this.Senha = Senha;
     }
+
+    Object getIdUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
