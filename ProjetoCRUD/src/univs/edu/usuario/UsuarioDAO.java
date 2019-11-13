@@ -63,4 +63,8 @@ public class UsuarioDAO {
       return usuario;
     }
 
+    public Usuario pesquisar(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

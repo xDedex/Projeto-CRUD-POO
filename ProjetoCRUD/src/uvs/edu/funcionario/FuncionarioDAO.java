@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import univs.edu.usuario.Usuario;
 import univs.edu.util.HibernateUtil;
 
 /**
@@ -67,6 +68,10 @@ public class FuncionarioDAO {
       List<Funcionario> funcionarios = sessao.createCriteria(Funcionario.class).list();
       sessao.close();
       return funcionarios;
+    }
+
+    public List<Usuario> listarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

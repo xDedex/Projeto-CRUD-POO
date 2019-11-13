@@ -87,6 +87,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jLabel6.setText("Usuário:");
 
         jButton1.setText("Selecionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -209,9 +214,12 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        TelaPesquisaUsuario tela = new TelaPesquisaUsuario();
-        tela.setVisible(true);
-        dispose();
+        if(!tfNome.getText().isEmpty() && !tfCPF.getText().isEmpty() && !tfSalario.getText().isEmpty() && !tfUsuario.getText().isEmpty() && !jcCargo.getSelectedItem().equals("Selecione")){
+            funcionario.setCargo(String.valueOf(jcCargo.getSelectedItem()));
+            funcionario.setCpf(tfCPF.getText());
+            funcionario.setNomeFuncionario(tfNome.getText());
+            funcionario.setSalario(Double.parseDouble(tfSalario.getText()));
+        }
         }
 
           public void limparCampos(){
@@ -234,20 +242,23 @@ public class TelaFuncionario extends javax.swing.JFrame {
               atualizarTabela();
           }
           
-      
-          
           public void atualizarTabela(){
               UsuarioTableModel tm = new UsuarioTableModel(dao.listarUsuarios());
               tabelaUsuario.setModel(tm);
     }
           
-          public void vincularusuario(telaFuncionario tela, Usuario usuario){
+          public void vincularusuario(TelaFuncionario tela, Usuario usuario){
               tela.carregarUsuario(usuario);
           }
           
     private void jcCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcCargoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      TelaVincularUsuario tela = new TelaVincularUsuario();
+      tela.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
