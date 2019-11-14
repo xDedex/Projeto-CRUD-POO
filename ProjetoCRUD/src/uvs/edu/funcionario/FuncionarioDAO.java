@@ -6,6 +6,7 @@
 package uvs.edu.funcionario;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -30,8 +31,14 @@ public class FuncionarioDAO {
  public void salvar(Funcionario funcionario){
      sessao = HibernateUtil.getSessionFactory().openSession();
      transacao = sessao.beginTransaction();
-  
-     sessao.save(funcionario);
+  if(funcionario.getIdFuncionario() == 0){
+      sessao.save(funcionario);
+      JOptionPane.showMessageDialog(null, "funcionario cadastrado");
+  }else{
+      editar(funcionario);
+      JOptionPane.showMessageDialog(null, "funcionario editado");
+  }
+     
      
        
      transacao.commit();
@@ -71,6 +78,10 @@ public class FuncionarioDAO {
     }
 
     public List<Usuario> listarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Funcionario pesquisar(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

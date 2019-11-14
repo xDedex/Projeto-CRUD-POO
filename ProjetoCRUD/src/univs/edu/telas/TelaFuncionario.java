@@ -5,6 +5,7 @@
  */
 package univs.edu.telas;
 
+import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioTableModel;
 import uvs.edu.funcionario.Funcionario;
@@ -219,6 +220,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
             funcionario.setCpf(tfCPF.getText());
             funcionario.setNomeFuncionario(tfNome.getText());
             funcionario.setSalario(Double.parseDouble(tfSalario.getText()));
+            dao.salvar(funcionario);
+            limparCampos();
+        }else{
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
         }
 
@@ -232,6 +237,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton2ActionPerformed
 
+          void preencherFuncionario() {
+        tfNome.setText(funcionario.getNomeFuncionario());
+        tfCPF.setText(funcionario.getCpf());
+        tfSalario.setText(StringValueOf(funcionario.getSalario()));
+        tfUsuario.setText(funcionario.getUsuario().getLogin());
+        jcCargo.setSelectedItem(funcionario.getCargo());
+    }
+          
           public void carregarUsuario (Usuario usuario){
               funcionario.setUsuario(usuario);
               tfUsuario.setText(usuario.getLogin());
@@ -313,4 +326,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField tfSalario;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
+
+    void preencherUsuario() {
+       
+    }
+
+    
+
+    private String StringValueOf(double salario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

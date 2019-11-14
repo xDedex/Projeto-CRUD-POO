@@ -6,6 +6,7 @@
 package univs.edu.telas;
 
 import univs.edu.usuario.UsuarioTableModel;
+import uvs.edu.funcionario.FuncionarioTableModel;
 
 /**
  *
@@ -14,6 +15,14 @@ import univs.edu.usuario.UsuarioTableModel;
 class tabelaUsuario {
 
     static void setModel(UsuarioTableModel tm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static int getSelectedRow() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static void setModel(FuncionarioTableModel tm) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
