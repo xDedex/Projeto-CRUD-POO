@@ -5,6 +5,7 @@
  */
 package univs.edu.telas;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
@@ -21,10 +22,11 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
     
     public TelaPesquisaUsuario() {
         initComponents();
+        atualizarTabela(dao.listarUsuarios());
     }
     
-    public void atualizarTabela(){
-        UsuarioTableModel tm = new UsuarioTableModel(dao.listarUsuarios());
+    public void atualizarTabela(List<Usuario> usuarios){
+        UsuarioTableModel tm = new UsuarioTableModel(usuarios);
         tabelaUsuario.setModel(tm);
     }
 
@@ -99,6 +101,11 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
         tfLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfLoginActionPerformed(evt);
+            }
+        });
+        tfLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLoginKeyPressed(evt);
             }
         });
 
@@ -213,7 +220,8 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  
+    atualizarTabela(dao.pesquisar("login", tfLogin.getText()));
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -221,7 +229,8 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      int linha = tabelaUsuario.getSelectedRow();
+     atualizarTabela(dao.listarUsuarios());
+        int linha = tabelaUsuario.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(null, "Selecione uma linha");
         }else{
@@ -241,10 +250,14 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
         }else if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário?", "Excluir usuário", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
         usuario = dao.pesquisar((int) tabelaUsuario.getValueAt(linha, 0));
         dao.excluir(usuario);
-        atualizarTabela();
+        atualizarTabela(dao.listarUsuarios());
         JOptionPane.showMessageDialog(null, "Usuário excluído!");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tfLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoginKeyPressed
+         atualizarTabela(dao.pesquisar("login", tfLogin.getText()));
+    }//GEN-LAST:event_tfLoginKeyPressed
 
     /**
      * @param args the command line arguments

@@ -62,9 +62,18 @@ public class UsuarioDAO {
       sessao.close();
       return usuario;
     }
+  
+  public List<Usuario> pesquisar(String campo, String valor){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+      transacao = sessao.beginTransaction();
+      List<Usuario> usuario = sessao.createCriteria(Usuario.class).add(Restrictions.ilike(campo, "%"+valor+"%")).list();
+      sessao.close();
+      return usuario;
+  }
 
     public Usuario pesquisar(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
+
+   
